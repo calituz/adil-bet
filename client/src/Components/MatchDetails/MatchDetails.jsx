@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BetsButton from "../BetsButton/BetsButton.jsx";
 import { useParams } from "react-router-dom";
-import "./MatchDetails.css";
+import styles from "./MatchDetails.module.css";
 
 export default function MatchDetails() {
   const dispatch = useDispatch();
@@ -17,22 +17,36 @@ export default function MatchDetails() {
   }, [dispatch, id]);
 
   return (
-    <div className="matchdetail">
-      <div className="cntleague">
-        <h1 className="titleleague">{match?.league}</h1>
-        <img className="imgleague" src={match?.logoLeague} alt="not found" />
-      </div>
-      <div className="cnt-teams">
-        <div>
-          <img className="imgteam" src={match?.logoHome} alt="not found" />
-          <h3>Equipo local: {match?.homeTeam}</h3>
+    <div className={styles.cntmatchDetails}>
+      <div className={styles.matchdetail}>
+        <div className={styles.cntleague}>
+          <h1 className={styles.titleleague}>{match?.league}</h1>
+          <img
+            className={styles.imgleague}
+            src={match?.logoLeague}
+            alt="not found"
+          />
         </div>
-        <div>
-          <img className="imgteam" src={match?.logoAway} alt="not found" />
-          <h3 >Equipo Visitante: {match?.awayTeam}</h3>
+        <div className={styles.cntteams}>
+          <div>
+            <img
+              className={styles.imgteam}
+              src={match?.logoHome}
+              alt="not found"
+            />
+            <h3>Equipo local: {match?.homeTeam}</h3>
+          </div>
+          <div>
+            <img
+              className={styles.imgteam}
+              src={match?.logoAway}
+              alt="not found"
+            />
+            <h3>Equipo Visitante: {match?.awayTeam}</h3>
+          </div>
         </div>
+        <BetsButton />
       </div>
-      <BetsButton />
     </div>
   );
 }
